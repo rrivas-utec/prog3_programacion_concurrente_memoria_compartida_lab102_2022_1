@@ -1,0 +1,24 @@
+1. Race Condition: Es problema de des-sincronizacion de hilos que comparten un mismo recurso, es una compentencia.
+	- Memoria
+	- Archivos
+	- Recurso computacional
+
+2. Para controlar el race condition, genero una seccion critica
+	- Mutex 
+		lock() --> Inicio de la seccion critica
+		unlock() --> Fin de la seccion critica
+
+		- Problema de la "Ventana del baño", que no se ejecute el unlock()
+			lock_guard	--> no permite hacer unlock(), 
+					ni diferir la ejecucion del lock()
+			unique_lock	--> es mas flexible
+
+	- Atomic
+		- Una sola operacion
+		- Mutex para varias operaciones
+
+	- Variables condicionales (condition_variable)
+		- Un hilo notifica --> cv.notify_one() 
+		- Otro hilo espera la notificacion 
+			--> cv.wait(ul, callable que retorne un bool)
+	
